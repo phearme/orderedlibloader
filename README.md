@@ -8,7 +8,6 @@ orderedlibloader can be usefull if you intend to load synchronously libs in a sp
 
 ```
 <script type="text/javascript" src="bower_components/orderedlibloader/dist/OrderedLibLoader.min.js"></script>
-
 ```
 
 ```
@@ -18,5 +17,4 @@ libsLoader.addLib("https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angula
 libsLoader.loadAllLibs(function (result) {
     console.log(result);
 });
-
 ```
