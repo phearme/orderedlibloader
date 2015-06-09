@@ -4,6 +4,10 @@
 
 orderedlibloader can be usefull if you intend to load synchronously libs in a specific order thus resolving dependencies issues in lazy loading.
 
+##Installation
+
+`bower install orderedlibloader`
+
 ## Usage
 
 ```
