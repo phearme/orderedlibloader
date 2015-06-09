@@ -18,5 +18,8 @@
     "loading"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/phearme/orderedlibloader"
+  "homepage": "https://github.com/phearme/orderedlibloader",
+  "devDependencies": {
+    "jasmine-core": "~2.3.4"
+  }
 }
