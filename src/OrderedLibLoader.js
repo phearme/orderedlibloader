@@ -57,9 +57,9 @@ var OrderedLibLoader = (function () {
     OrderedLibLoader.prototype.loadAllLibs = function (callback) {
         var self = this,
             onAllDone = function () {
-                this.dispatchEvent("onAllLibsLoaded", this.libs);
+                self.dispatchEvent("onAllLibsLoaded", self.libs);
                 if (typeof callback === "function") {
-                    callback(this.libs);
+                    callback(self.libs);
                 }
             },
             loadLib = function (index) {
