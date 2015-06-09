@@ -1,10 +1,10 @@
 # orderedlibloader
 
-###A lazy loading Javascript library for loading libs sequentially in a specific order.
+### A lazy loading Javascript library for loading libs sequentially in a specific order.
 
 orderedlibloader can be usefull if you intend to load synchronously libs in a specific order thus resolving dependencies issues in lazy loading.
 
-##Installation
+## Installation
 
 `bower install orderedlibloader`
 
@@ -22,3 +22,10 @@ libsLoader.loadAllLibs(function (result) {
     console.log(result);
 });
 ```
+
+## API
+* **addLib(url)**
+* **removeLib(url)**
+* **getLibs()**
+* **addEventListener("onAllLibsLoaded", callback)**
+* **loadAllLibs(callback)**
