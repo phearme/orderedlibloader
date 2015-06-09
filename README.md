@@ -6,15 +6,15 @@ orderedlibloader can be usefull if you intend to load synchronously libs in a sp
 
 ## Installation
 
-`bower install orderedlibloader`
+`bower install --save orderedlibloader`
 
 ## Usage
 
-```
+```html
 <script type="text/javascript" src="bower_components/orderedlibloader/dist/OrderedLibLoader.min.js"></script>
 ```
 
-```
+```javascript
 var libsLoader = new OrderedLibLoader();
 libsLoader.addLib("https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js");
 libsLoader.addLib("https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js");
