@@ -24,8 +24,9 @@ libsLoader.loadAllLibs(function (result) {
 ```
 
 ## API
-* **addLib(url)**
-* **removeLib(url)**
-* **getLibs()**
-* **addEventListener("onAllLibsLoaded", callback)**
-* **loadAllLibs(callback)**
+* addLib(url)
+* removeLib(url)
+* getLibs()
+* clearLibs()
+* addEventListener("onAllLibsLoaded", callback)
+* loadAllLibs(callback)

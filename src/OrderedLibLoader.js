@@ -28,6 +28,10 @@ var OrderedLibLoader = (function () {
         }
     };
 
+    OrderedLibLoader.prototype.clearLibs = function () {
+        this.libs = [];
+    };
+
     OrderedLibLoader.prototype.getLibs = function () {
         return this.libs;
     };
