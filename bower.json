@@ -1,0 +1,22 @@
+{
+  "name": "orderedlibloader",
+  "version": "1.0.0",
+  "authors": [
+    "Cohen Raphaël <raphael.cohen@gmail.com>"
+  ],
+  "description": "A lazy loading Javascript library for loading libs sequentially in a specific order. This can be usefull if you intend to load synchronously libs in a specific order thus resolving dependencies issues in lazy loading.",
+  "main": "src/OrderedLibLoader.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "lazy",
+    "loading",
+    "load",
+    "libs",
+    "synchronous",
+    "loading"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/phearme/orderedlibloader"
+}
