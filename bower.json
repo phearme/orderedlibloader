@@ -1,10 +1,10 @@
 {
   "name": "orderedlibloader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "authors": [
     "Cohen Raphaël <raphael.cohen@gmail.com>"
   ],
-  "description": "A lazy loading Javascript library for loading libs sequentially in a specific order. This can be usefull if you intend to load synchronously libs in a specific order thus resolving dependencies issues in lazy loading.",
+  "description": "A lazy loading Javascript library for loading libs sequentially in a specific order.",
   "main": "src/OrderedLibLoader.js",
   "moduleType": [
     "globals"

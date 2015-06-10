@@ -51,7 +51,7 @@ var OrderedLibLoader = (function () {
                     try {
                         this.eventListeners[eventName][i](args);
                     } catch (e) {
-                        if (window.console) { console.log(e); }
+                        if (window.console) { window.console.log(e); }
                     }
                 }
             }
@@ -68,29 +68,23 @@ var OrderedLibLoader = (function () {
             },
             loadLib = function (index) {
                 var s = document.createElement("script"),
-                    onLoad = function () {
-                        self.libs[index].status = "loaded";
+                    onLoadDone = function (success) {
+                        self.libs[index].status = success ? "loaded" : "failed";
                         if (index === self.libs.length - 1) {
                             onAllDone();
                             return;
                         }
                         loadLib(index + 1);
                     },
-                    onFail = function () {
-                        self.libs[index].status = "failed";
-                        if (index === self.libs.length - 1) {
-                            onAllDone();
-                            return;
-                        }
-                        loadLib(index + 1);
-                    };
+                    onLoadSuccess = function () { onLoadDone(true); },
+                    onLoadFail = function () { onLoadDone(false); };
                 s.setAttribute("type", "text/javascript");
                 s.setAttribute("src", self.libs[index].url);
                 if (s.addEventListener) {
-                    s.addEventListener("load", onLoad, false);
-                    s.addEventListener("error", onFail, false);
+                    s.addEventListener("load", onLoadSuccess, false);
+                    s.addEventListener("error", onLoadFail, false);
                 } else {
-                    s.onreadystatechange = onLoad;
+                    s.onreadystatechange = onLoadSuccess;
                 }
                 document.getElementsByTagName("head")[0].appendChild(s);
             };

@@ -1,4 +1,6 @@
+/*global describe, beforeEach, OrderedLibLoader, it, expect*/
 describe("Load libs synchronously and check callback result: 2 libs succes and 1 fail (in that order)", function () {
+    "use strict";
     var libsLoadedResult;
 
     beforeEach(function (done) {
