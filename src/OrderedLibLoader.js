@@ -75,16 +75,14 @@ var OrderedLibLoader = (function () {
                             return;
                         }
                         loadLib(index + 1);
-                    },
-                    onLoadSuccess = function () { onLoadDone(true); },
-                    onLoadFail = function () { onLoadDone(false); };
+                    };
                 s.setAttribute("type", "text/javascript");
                 s.setAttribute("src", self.libs[index].url);
                 if (s.addEventListener) {
-                    s.addEventListener("load", onLoadSuccess, false);
-                    s.addEventListener("error", onLoadFail, false);
+                    s.addEventListener("load", function () { onLoadDone(true); }, false);
+                    s.addEventListener("error", function () { onLoadDone(false); }, false);
                 } else {
-                    s.onreadystatechange = onLoadSuccess;
+                    s.onreadystatechange = function () { onLoadDone(true); };
                 }
                 document.getElementsByTagName("head")[0].appendChild(s);
             };
