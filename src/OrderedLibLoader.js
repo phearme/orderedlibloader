@@ -58,20 +58,21 @@ var OrderedLibLoader = (function () {
         }
     };
 
+    OrderedLibLoader.prototype.onAllDone = function (callback) {
+        this.dispatchEvent("onAllLibsLoaded", this.libs);
+        if (typeof callback === "function") {
+            callback(this.libs);
+        }
+    };
+
     OrderedLibLoader.prototype.loadAllLibs = function (callback) {
         var self = this,
-            onAllDone = function () {
-                self.dispatchEvent("onAllLibsLoaded", self.libs);
-                if (typeof callback === "function") {
-                    callback(self.libs);
-                }
-            },
             loadLib = function (index) {
                 var s = document.createElement("script"),
                     onLoadDone = function (success) {
                         self.libs[index].status = success ? "loaded" : "failed";
                         if (index === self.libs.length - 1) {
-                            onAllDone();
+                            self.onAllDone(callback);
                             return;
                         }
                         loadLib(index + 1);
@@ -87,7 +88,7 @@ var OrderedLibLoader = (function () {
                 document.getElementsByTagName("head")[0].appendChild(s);
             };
         if (this.libs.length === 0) {
-            onAllDone();
+            this.onAllDone(callback);
             return;
         }
         loadLib(0);
