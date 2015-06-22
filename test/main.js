@@ -1,30 +1,21 @@
-/*global CryptoJS*/
-var t24enda = {
-    cjf: {
-        stringify: function (cp) {
-            "use strict";
-            var j = {ct: cp.ciphertext.toString(CryptoJS.enc.Base64)};
-            if (cp.iv) { j.iv = cp.iv.toString(); }
-            if (cp.salt) { j.s = cp.salt.toString(); }
-            return JSON.stringify(j);
-        },
-        parse: function (js) {
-            "use strict";
-            var j = JSON.parse(js),
-                cp = CryptoJS.lib.CipherParams.create({ciphertext: CryptoJS.enc.Base64.parse(j.ct)});
-            if (j.iv) { cp.iv = CryptoJS.enc.Hex.parse(j.iv); }
-            if (j.s) { cp.salt = CryptoJS.enc.Hex.parse(j.s); }
-            return cp;
-        }
-    },
-    enda: function (d) {
-        "use strict";
-        try {
-            var s = typeof d === "object" ? JSON.stringify(d) : JSON.stringify(JSON.parse(d)),
-                k = (new Date()).toJSON().substr(0, 10);
-            return window.btoa(CryptoJS.AES.encrypt(s, k, {format: this.cjf}).toString());
-        } catch (e0) {
-            return e0.message;
-        }
-    }
-};
+/*global describe, beforeEach, OrderedLibLoader, it, expect*/
+describe("Load libs synchronously and check callback result: 2 libs succes and 1 fail (in that order)", function () {
+    "use strict";
+    var libsLoadedResult;
+
+    beforeEach(function (done) {
+        var libsLoader = new OrderedLibLoader();
+        libsLoader.addLib("https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js");
+        libsLoader.addLib("https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js");
+        libsLoader.addLib("http://failfailfailfailfailfailfail.js");
+        libsLoader.loadAllLibs(function (result) {
+            libsLoadedResult = result;
+            done();
+        });
+    });
+
+    it("adds 3 libs, first 2 should load, last 1 should fail", function () {
+        expect(JSON.stringify(libsLoadedResult)).toEqual('[{"url":"https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js","status":"loaded"},{"url":"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js","status":"loaded"},{"url":"http://failfailfailfailfailfailfail.js","status":"failed"}]');
+    });
+
+});
