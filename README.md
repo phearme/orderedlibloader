@@ -2,7 +2,7 @@
 
 ### A lazy loading Javascript library for loading libs sequentially in a specific order.
 
-orderedlibloader can be usefull if you intend to load synchronously libs in a specific order thus resolving dependencies issues in lazy loading.
+*orderedlibloader* is used to load libs sequentially in a specific order thus resolving dependencies issues in lazy loading. Even though the libs are loaded sequentially, loading the libs is asynchronous and does not block the current thread. A callback can be specified and triggered once all libs are done loading.
 
 ## Installation
 
